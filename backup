@@ -5,9 +5,9 @@ echo $fecha
 mkdir -p /vmfs/volumes/62a43d75-c1167f18-0cbd-b8cb29ee39a5/Backups/principal/$fecha
 mkdir -p /vmfs/volumes/62a43d75-c1167f18-0cbd-b8cb29ee39a5/Backups/OpenVPN/$fecha
 
-cp /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/principal_gefinsol/principal_gefinsol.vmx \
-        /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/principal_gefinsol/principal_gefinsol.nvram \
-        /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/principal_gefinsol/principal_gefinsol.vmsd \
+cp /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/principal/principal.vmx \
+        /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/principal/principal.nvram \
+        /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/principal/principal.vmsd \
         /vmfs/volumes/62a43d75-c1167f18-0cbd-b8cb29ee39a5/Backups/principal/$fecha/
 
 #vmid=$(vim-cmd vmsvc/getallvms | grep web01 | awk '{print $1}')
@@ -19,12 +19,12 @@ then
 echo  "FALLO"
 else
                 echo "OK snapshot"
-                vmkfstools -i /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/principal_gefinsol/principal_gefinsol.vmdk \
-                /vmfs/volumes/62a43d75-c1167f18-0cbd-b8cb29ee39a5/Backups/principal/$fecha/principal_gefinsol.vmdk -d thin
+                vmkfstools -i /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/principal/principal.vmdk \
+                /vmfs/volumes/62a43d75-c1167f18-0cbd-b8cb29ee39a5/Backups/principal/$fecha/principal.vmdk -d thin
                 echo $fecha >> /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/Backups/script/principal.log
                 echo "clonado disco de sistema" >> /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/Backups/script/principal.log
-                vmkfstools -i /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/principal_gefinsol/datos_gefinsol.vmdk \
-                /vmfs/volumes/62a43d75-c1167f18-0cbd-b8cb29ee39a5/Backups/principal/$fecha/datos_gefinsol.vmdk -d thin
+                vmkfstools -i /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/principal/datos.vmdk \
+                /vmfs/volumes/62a43d75-c1167f18-0cbd-b8cb29ee39a5/Backups/principal/$fecha/datos.vmdk -d thin
                 echo $fecha >> /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/Backups/script/principal.log
                 echo "clonado disco de datos" >> /vmfs/volumes/62a3d021-349d6394-1f7d-b8cb29ee39a5/Backups/script/principal.log
 
