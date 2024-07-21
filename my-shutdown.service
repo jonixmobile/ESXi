@@ -1,0 +1,13 @@
+[Unit]
+# /etc/systemd/system/my-shutdown.service
+Description=Unmount GoogleDrive on shutdown
+Before=umount.target shutdown.target reboot.target halt.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/bin/true
+ExecStop=/bin/sh -c "/bin/sh /root/esxi1.sh"
+
+[Install]
+WantedBy=multi-user.target
